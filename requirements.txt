@@ -6,6 +6,6 @@ django==4.2.10
 jinja2==3.1.3 #html的模板語言
 matplotlib 
 django-hitcount
-django_filters
+django-filter
 django-markdown
 django-mdeditor
