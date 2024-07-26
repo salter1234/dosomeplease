@@ -1,0 +1,64 @@
+{% extends 'mentalhealth/base.html' %}
+
+{% block title %}心理課程 - DoSome 心理健康學習平台{% endblock %}
+
+{% block content %}
+<!-- 產品詳細介紹 -->
+    <div class="p-3 mb-2 bg-danger text-white"><h2>課程介紹</h2></div>
+        <div class="row">
+            <div class="col-md-12">
+                {% comment %} <div class="card"> {% endcomment %}
+                    <iframe width="800" height="450" src="{{ course.src }}" title="{{ course.coursename }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    {% comment %} <img src="{{ course.image.url }}" class="card-img-top" alt="{{ course.coursename }}"> {% endcomment %}
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tr>
+                                <th>課程名稱：</th>
+                                <td>{{ course.coursename }}</td>
+                            </tr>
+                            <tr>
+                                <th>課程內容：</th>
+                                <td>{{ course.content|safe }}</td>
+                            </tr>
+                            <tr>
+                                <th>講師：</th>
+                                <td>{{ course.teacher }}</td>
+                            </tr>
+                            <tr>
+                                <th>類別：</th>
+                                <td>{% for iclassify in course.classifys.all %}<a href="#" class="btn btn-dark" style="color:white;">{{ iclassify }}</a> {% endfor %}</td>
+                            </tr>
+                            <tr>
+                                <th>訂閱費用：</th>
+                                <td>{{ course.price }}元</td>
+                            </tr>
+                            <tr>
+                                <th>觀看次數：</th>
+                                <td>{{ course.hit_count.hits }}</td>
+                            </tr>  
+                        </table>
+                    </div>
+                    {% comment %} <div class="card-body">
+                        <h5 class="card-title">課程名稱：{{ course.coursename }}</h5>
+                        <p class="card-text">課程內容：{{ course.content }}</p>
+                        <p class="card-text">講師：{{ course.teacher }}</p>
+                        <p class="card-text">類別：{% for iclassify in course.classifys.all %}#{{ iclassify }}{% endfor %}</p>
+                        <p class="card-text">訂閱費用：{{ course.price }}元</p>
+                        <p class="card-text">觀看次數：{{ course.hit_count.hits }}</p> {% endcomment %}
+                        <div class = "d-flex justify-contain-between align-items-center">
+                            <div class = "btn">
+                                {% comment %} <a href="{% url 'course' course.id %}" class="btn btn-secondary" style="color:white;">詳細內容</a> {% endcomment %}
+                                <!-- 添加到購物車按鈕 -->
+                                {% if user.is_authenticated %}
+                                    <a href="{% url 'order' %}" class="btn btn-danger" style="color:white;">購買</a>
+                                {% else %}
+                                    <a href="{% url 'login' %}" class="btn btn-danger" style="color:white;">購買</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% comment %} </div> {% endcomment %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

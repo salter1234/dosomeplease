@@ -1,0 +1,42 @@
+{% extends 'mentalhealth/base.html' %}
+
+{% block title %}心理文章 - DoSome 心理健康學習平台{% endblock %}
+
+{% block content %}
+<!-- 產品詳細介紹 -->
+    <div class="p-3 mb-2 text-dark"><h1 class="display-4">{{ post.subject }}</h1></div>
+        <div class="row">
+            <div class="col-md-12">
+                {% comment %} <div class="card"> {% endcomment %}
+                    {% comment %} <iframe width="800" height="450" src="{{ course.src }}" title="{{ course.coursename }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> {% endcomment %}
+                    <img width="840" height="600" src="{{ post.image.url }}" class="card-img-top" alt="{{ post.subject }}">
+                    <br>
+                    <br>
+                    <p>{{ post.content|safe}}</p>
+                    <br>
+                    <table class="table">
+                        <tr>
+                            <th>作者：</th>
+                            <td>{{ post.teacher }}</td>
+                        </tr>
+                        <tr>
+                            <th>類別：</th>
+                            <td>{% for iclassify in post.classifys.all %}<a href="#" class="btn btn-dark" style="color:white;">{{ iclassify }}</a> {% endfor %}</td>
+                        </tr>
+                        <tr>
+                            <th>觀看次數：</th>
+                            <td>{{ post.hit_count.hits }}</td>
+                        </tr>
+                        {% comment %} {% if post.teacher_id==user.id %}
+                        <tr>
+                            <th>編輯：</th>
+                            <td><a href="{% url 'writePostsUpdate' post.id %}" class="btn btn-danger" style="color:white;">修改</a></td>
+                        </tr>
+                        {% else %}
+                        {% endif %}   {% endcomment %}
+                    </table>
+                {% comment %} </div> {% endcomment %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

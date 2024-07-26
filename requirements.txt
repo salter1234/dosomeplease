@@ -1,0 +1,10 @@
+#render沒那麼聰明，能知道此程式會需要安裝什麼語言，所以需要告訴它
+
+gunicorn #render平台一定要安裝的
+beautifulsoup4==4.12.2 #爬蟲的軟體
+django==4.2.10
+jinja2==3.1.3 #html的模板語言
+matplotlib 
+hitcount
+django_filters
+mdeditor

@@ -1,0 +1,31 @@
+{% extends 'mentalhealth/base.html' %}
+
+{% block title %}我的課程 - DoSome 心理健康學習平台{% endblock %}
+
+{% block content %}
+
+<h2>已購課程</h2>
+<table class="table">
+    <thead>
+        <th>課程名稱</th>
+        <th>授課講師</th>
+        <th>費用</th>
+        {% comment %} <th>Quantity</th> {% endcomment %}
+        <th>訂閱狀態</th>
+    </thead>
+
+    <tbody>
+        {% for order in orders %}
+        <tr>
+            <td>{{ order.courses.coursename }}</td>
+            <td>{{ order.courses.teacher }}</td>
+            <td>{{ order.courses.price }}</td>
+            {% comment %} <td>{{ order.quantity }}</td> {% endcomment %}
+            <td>{{ order.status }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+                
+{% endblock %}

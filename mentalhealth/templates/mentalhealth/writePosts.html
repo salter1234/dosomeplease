@@ -1,0 +1,46 @@
+{% extends 'mentalhealth/base.html' %}
+
+{% block title %}撰寫文章 - DoSome 心理健康學習平台{% endblock %}
+
+{% block content %}
+<!-- 產品詳細介紹 -->
+<div class="p-3 mb-2 bg-danger text-white"><h2>撰寫文章</h2></div>
+<details>
+    <summary>開始撰寫新文章<form method="POST" enctype="multipart/form-data"></summary>
+        <br/>
+        <div class="col-auto">
+            {% csrf_token %}
+            {{ form.media }}
+            {{ form.as_p }}
+            <input type="submit" class="btn btn-dark" style="color:white; float:right" value="發佈">
+        </div>
+    </form>
+</details>
+<br/>
+<br/>
+<br/>
+<div class="p-3 mb-2 bg-danger text-white"><h2>我的文章列表</h2></div>
+    <table class="table">
+        <thead>
+            <th>文章名稱：</th>
+            {% comment %} <th>Quantity</th> {% endcomment %}
+            <th>點擊次數：</th>
+            <th></th>
+        </thead>
+
+        <tbody>
+            {% for post in posts %}
+            <tr>
+                <td>{{ post.subject }}</td>
+                {% comment %} <td>{{ item.order.quantity }}</td> {% endcomment %}
+                <td>{{ post.hit_count.hits }}</td>
+                <td>
+                    <a href="{% url 'post' post.id %}" class="btn btn-primary" style="color:white;">閱讀</a>
+                    <a href="{% url 'writePostsUpdate' post.id %}" class="btn btn-success" style="color:white;">修改</a>
+                    <a href="{% url 'writePostsDelete' post.id %}" class="btn btn-danger" style="color:white;">刪除</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

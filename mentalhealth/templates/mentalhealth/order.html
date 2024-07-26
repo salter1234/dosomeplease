@@ -1,0 +1,23 @@
+{% extends 'mentalhealth/base.html' %}
+
+{% block title %}購買課程 - DoSome 心理健康學習平台{% endblock %}
+
+{% block content %}
+
+<div class="container register-container">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h1>購買課程</h1>
+                    <form method="post">
+                    {% csrf_token %}
+                    課程名稱： {{ form.courses }}
+                    <button type="submit" class="btn btn-primary" >新增</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>                
+{% endblock %}

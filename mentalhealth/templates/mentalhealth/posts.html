@@ -1,0 +1,38 @@
+{% extends 'mentalhealth/base.html' %}
+
+{% block title %}心理文章 - DoSome 心理健康學習平台{% endblock %}
+
+{% block content %}
+<form method='get' class="row row-cols-lg-auto g-3 align-items-center">
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;</p><h5 class="text-xl-start">作者：{{ filter.form.teacher }}</h5>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;</p><h5 class="text-xl-start">類別：</h5>{{ filter.form.classifys }}
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;</p><button class="btn btn-danger" style="color:white;" type="submit">搜索</button>
+</form>
+<!-- 產品透過card呈現 -->
+    <br>
+    <div class="p-3 mb-2 bg-danger text-white"><h2>心理文章</h2></div>
+    <div class="row">  
+        {% if filter.qs %}
+            {% for post in filter.qs %}
+                <div class="col-md-4">
+                    <div class="card">
+                        {% comment %} <iframe width="268" height="256" src="{{ course.src }}" title="{{ course.coursename }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> {% endcomment %}
+                        <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.subject }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ post.subject }}</h5>
+                            <p class="card-text">{{ post.content|safe|truncatechars_html:30 }}</p>
+                            <p class="card-text">作者：{{ post.teacher }}</p>
+                            <div class = "d-flex justify-contain-between align-items-center">
+                                <div class = "btn-group">
+                                    <a href="{% url 'post' post.id %}" class="btn btn-primary" style="color:white;">閱讀</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>沒有符合條件的課程！</p>
+        {% endif %}
+    </div>
+{% endblock %}

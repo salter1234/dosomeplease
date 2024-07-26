@@ -1,0 +1,13 @@
+{% extends 'mentalhealth/base.html' %}
+
+{% block title %}註冊 - DoSome 心理健康學習平台{% endblock %}
+
+{% block content %}
+    <h1>註冊</h1>
+    <form method="post">
+        {% csrf_token %}
+        {% comment %} {{ form.as_p }} {% endcomment %}
+        {{ profile_form.as_p }}
+        <button type="submit" class="btn btn-primary">確認送出</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'mentalhealth/base.html' %}
+
+{% block title %}訂閱確認 - DoSome 心理健康學習平台{% endblock %}
+
+{% block content %}
+
+<h2>訂閱確認</h2>
+<table class="table">
+    <thead>
+        <th>課程名稱</th>
+        {% comment %} <th>Quantity</th> {% endcomment %}
+        <th>費用</th>
+        <th></th>
+    </thead>
+
+    <tbody>
+        {% for item in orders %}
+        <tr>
+            <td>{{ item.order.courses.coursename }}</td>
+            {% comment %} <td>{{ item.order.quantity }}</td> {% endcomment %}
+            <td>{{ item.order_total }}</td>
+            <td>
+                {% comment %} <a href="{% url 'order_increase' item.order.id %}" class="btn btn-success btn-sm">+</a>
+                <a href="{% url 'order_decrease' item.order.id %}" class="btn btn-warning btn-sm">-</a> {% endcomment %}
+                <a href="{% url 'order_delete' item.order.id %}" class="btn btn-danger btn-sm" style="color:white;">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<h3>總金額: ${{ order_price }}</h3>
+<form method="post" action="{% url 'order_confirm' order_id %}">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary">訂單確認</button>
+</form>
+<p></p>
+
+<div class="container register-container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h2>還需要其他的課程嗎？</h2>
+                    <form method="post" action="{% url 'add_item_to_order' order_id %}">
+                    {% csrf_token %}
+                    {{ order_form.as_p }}
+                    <button type="submit" class="btn btn-primary">新增</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+                
+{% endblock %}
