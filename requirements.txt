@@ -5,6 +5,7 @@ beautifulsoup4==4.12.2 #爬蟲的軟體
 django==4.2.10
 jinja2==3.1.3 #html的模板語言
 matplotlib 
-hitcount
+django-hitcount
 django_filters
-mdeditor
+django-markdown
+django-mdeditor
