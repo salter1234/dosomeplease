@@ -135,8 +135,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 #      'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 #  ]
 
+X_FRAME_OPTIONS = 'SAMEORIGIN'  # 针对django3.0+修改 frame 配置 + 默认为 deny
 MEDIA_URL = "media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 # django-mdeditor 设置
 MDEDITOR_CONFIGS = {
     'default':{
@@ -182,4 +184,3 @@ EMAIL_HOST_PASSWORD = "riau ddso vhtb ckgu" #Gmail應用程式的密碼
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-X_FRAME_OPTIONS = 'SAMEORIGIN'  # 针对django3.0+修改 frame 配置 + 默认为 deny
