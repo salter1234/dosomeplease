@@ -224,7 +224,7 @@ def course(request, course_id):
 
 #courses
 def courses(request):
-    courses = Course.objects.filter().order_by('-create_date')[:6]
+    courses = Course.objects.filter().all().order_by('-create_date')
     filter_class = CourseFilterSet(request.GET, queryset=courses)
     for course in filter_class.qs:
         course.content = markdown.markdown(course.content,
@@ -252,7 +252,7 @@ def post(request, post_id):
 
 #posts
 def posts(request):
-    posts = Post.objects.all().order_by('-create_date')[:6]
+    posts = Post.objects.filter().all().order_by('-create_date')
     filter_class = PostFilterSet(request.GET, queryset=posts)
     for post in filter_class.qs:
         post.content = markdown.markdown(post.content,
@@ -263,6 +263,7 @@ def posts(request):
                                   ],
                                   safe_mode=True,
                                   enable_attributes=False)
+    
     return render(request, 'mentalhealth/posts.html', {'filter':filter_class})
 
 #writePosts

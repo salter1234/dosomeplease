@@ -1,7 +1,9 @@
-from django_filters import FilterSet, NumberFilter, CharFilter, BooleanFilter
+from django_filters import FilterSet, NumberFilter, CharFilter, BooleanFilter, ModelChoiceFilter
 from .models import Course, Post
 
+
 class CourseFilterSet(FilterSet):
+    # teacher = ModelChoiceFilter(queryset=Course.objects.filter(teacher__is_teacher__exact=True).all())
     class Meta:
         model = Course
         fields = ('teacher', 'classifys')
